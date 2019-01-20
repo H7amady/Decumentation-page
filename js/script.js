@@ -1,0 +1,32 @@
+//create the dropdown base
+$("<select />").appendTo("nav");
+
+//create default option "Go to..." 
+$("<option />", {
+    "selected": "selected",
+    "value"   : "",
+    "text"    : "Go to..."
+}).appendTo("nav select");
+
+//Populate dropdown with menu items
+$("nav a").each(function(){
+    var el = $(this);
+    $("<option />", {
+        "value"  : el.attr("href"),
+        "text"   : el.text()
+    }).appendTo("nav select");
+});
+
+//make it work
+$("nav select").change(function() {
+    window.location + $(this).find("option:selected").val();
+});
+
+function openJSList(){
+    var list = document.getElementById("ullist");
+    if (list.style.display == "none"){
+        list.style.display = "block";
+    }else {
+        list.style.display = "none";
+    }
+}
